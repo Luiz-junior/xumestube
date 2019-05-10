@@ -29,6 +29,7 @@ export const fetchVideoError = () => {
 
 export const fetchVideo = (term) => {
     return dispatch => {
+        console.log('term', term);
         dispatch(fetchVideoBegin());
         youtubeSearch(API_KEY, { q: term })
             .then(data => dispatch(fetchVideoSuccess(data.items)))
