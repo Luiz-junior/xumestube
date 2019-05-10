@@ -13,11 +13,16 @@
 
 .videoPlayer {
   grid-area: videoPlayer;
-  background: blue;
+  background: #111;
 }
 
 .videoList {
   grid-area: videoList;
-  background: yellow;
+  background: #111;  
+  padding: 15px;
+}
+
+#videoListHeader {
+  color: #eee;
 }
 

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { List, Image, Dimmer, Loader } from 'semantic-ui-react';
 
-import { List, Image, } from 'semantic-ui-react';
+import { playVideo } from '../store/actions/playVideo';
 
 class VideoList extends Component {
 
     renderVideo = (video) => {
         return (
-            <List animated verticalAlign="middle" key={video.id.videoId}>
-                <List.Item>
+            <List animated verticalAlign="middle" key={video.etag}>
+                <List.Item onClick={() => this.props.playVideo(video)}>
                     <Image src={video.snippet.thumbnails.default.url}  />
                     <List.Content>
-                        <List.Header>{video.snippet.title}</List.Header>
+                        <List.Header id="videoListHeader">{video.snippet.title}</List.Header>
                     </List.Content>
                 </List.Item>
             </List>
@@ -21,10 +22,15 @@ class VideoList extends Component {
     render() {
         return (
             <div className="videoList">
-            { this.props.videos.map(video => { 
-                return this.renderVideo(video) 
-            }) 
-            }
+                {
+                    this.props.loading && (
+                        <Dimmer active inverted>
+                            <Loader size="medium">Carregando...</Loader>
+                        </Dimmer>
+                    )
+                }
+
+                { this.props.videos.map(video => this.renderVideo(video)) }
             </div>
         );
     };
@@ -38,4 +44,10 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, null)(VideoList);
+const mapDispatchToProps = dispatch => {
+    return {
+        playVideo: (video) => dispatch(playVideo(video)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
