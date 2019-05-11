@@ -6,10 +6,14 @@ import { fetchVideo } from '../store/actions/fetchVideo';
 
 class SearchBar extends Component {
 
+    constructor(props) {
+        super(props);
+        this.props.fetchVideo('Xumes Udemy');
+    };
+
     researchTerm = e => {
         if(e.keyCode === 13){
             const term = e.target.value;
-            //console.log(term); 
             this.props.fetchVideo(term);
         }
     };
@@ -18,7 +22,12 @@ class SearchBar extends Component {
         return (
             <div className="searchBar">
                 <Segment stacked>
-                    <Input onKeyDown={(e) => this.researchTerm(e)} icon="search" size='large' placeholder="Search ..." />
+                    <Input 
+                        onKeyDown={(e) => this.researchTerm(e)} 
+                        icon="search" 
+                        size='large' 
+                        placeholder="Pesquisar" 
+                    />
                 </Segment>
             </div>
         );

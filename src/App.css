@@ -8,12 +8,18 @@
 
 .searchBar {
   grid-area: searchBar;
-  background: red;
+}
+
+.searchBar Input {
+  width: 840px;
+  display: flex;
+  align-items: center;
 }
 
 .videoPlayer {
   grid-area: videoPlayer;
   background: #111;
+  min-width: 860px;
 }
 
 .videoList {
@@ -26,3 +32,14 @@
   color: #eee;
 }
 
+.videoTitle {
+  font-weight: 600;
+  color: #eee;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.videoDescription {
+  padding: 10px;
+  color: #eee;
+}
